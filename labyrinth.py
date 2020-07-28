@@ -3,10 +3,12 @@ import random
 import pygame
 from pygame.locals import *
 
+# this two variables will be the graphic reference
 WIDTH = 1080
 HEIGHT = 660
 
 
+# this function give a random position to the game's items
 def set_item_position(map, item_string):
     x = random.randint(0, len(map) - 1)
     y = random.randint(0, len(map[0]) - 1)
@@ -42,9 +44,11 @@ def start():  # this fonction create 2D array from a txt file
 
     start.fenetre = pygame.display.set_mode((WIDTH, HEIGHT))
 
-    # assignation of the character to their fonction in the map
+    # assignation of the characters to their function in the map
     for number in map_dict:
-        poswidth = (x - 1) * WIDTH / (start.col - 1)
+        poswidth = (
+            (x - 1) * WIDTH / (start.col - 1)
+        )  # this two variable give the graphic placement of the objects
         posheight = (y - 1) * HEIGHT / (start.line - 1)
         wall = pygame.image.load("image/mur.png").convert_alpha()
         wall = pygame.transform.scale(
@@ -71,6 +75,7 @@ def start():  # this fonction create 2D array from a txt file
             x += 1
 
 
+# This function glue the images to their graphic place
 def display_layout():
     scale_col_general = int(WIDTH / (start.col - 1))
     scale_line_general = int(HEIGHT / (start.line - 1))
@@ -111,6 +116,8 @@ def display_layout():
     x, y = start.macGyver.get_position()
 
     pygame.display.flip()
+
+    # this loop make take the deplacement order and make macgyver move
     continuer = 1
     while continuer:
         for event in pygame.event.get():
@@ -142,6 +149,7 @@ def display_layout():
                     )
                     pygame.display.flip()
 
+                # when you step on the guard, this condition decide if you win or lose
                 if start.x_y_guard == (x, y):
                     continuer = 0
                     if start.macGyver.inventory(start.map_overview) == True:

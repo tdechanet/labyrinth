@@ -61,13 +61,14 @@ class Character(
         y = self.get_position()[1]
         print(self.bag)
         if (
-            map[x][y] == "aiguille" and "aiguille" not in self.bag
+            map[x][y] == "aiguille" and "needle" not in self.bag
         ):  # if the player walk in an item, this line check if he don't already have it
             self.bag.append(
-                "aiguille"
+                "needle"
             )  # if he don't have it, this line add it in the inventory
-        if map[x][y] == "éther" and "éther" not in self.bag:
-            self.bag.append("éther")
+        if map[x][y] == "éther" and "ether" not in self.bag:
+            self.bag.append("ether")
+
         if map[x][y] == "tube" and "tube" not in self.bag:
             self.bag.append("tube")
         if len(self.bag) == 3:
