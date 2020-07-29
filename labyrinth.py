@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from character import Character
 import random
 import pygame

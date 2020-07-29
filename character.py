@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from item import Item
 import pygame
 from pygame.locals import *
