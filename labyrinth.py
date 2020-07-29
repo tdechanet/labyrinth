@@ -37,8 +37,8 @@ def start():  # this fonction create 2D array from a txt file
         if start.col == len(number) or start.col == 0:
             start.col = len(number)
         # if not the same amount, we raise errors message
-        """else:
-            raise "Le nombre de colonnes doit être égal pour chaque lignes."""
+        else:
+            raise "Le nombre de colonnes doit être égal pour chaque lignes."
     # creation of the 2D array
     start.map_overview = [[0 for i in range(start.line)] for j in range(start.col)]
 
