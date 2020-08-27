@@ -10,8 +10,9 @@ WIDTH = 1080
 HEIGHT = 660
 
 
-# this function give a random position to the game's items
+
 def set_item_position(map, item_string):
+    '''this function give a random position to the game's items'''
     x = random.randint(0, len(map) - 1)
     y = random.randint(0, len(map[0]) - 1)
     if map[x][y] == "path":
@@ -21,7 +22,8 @@ def set_item_position(map, item_string):
         return set_item_position(map, item_string)
 
 
-def start():  # this fonction create 2D array from a txt file
+def start():  
+    '''this fonction create 2D array from a txt file'''
     x = 1  # abscissa
     y = 1  # orderly
 
@@ -77,13 +79,15 @@ def start():  # this fonction create 2D array from a txt file
             x += 1
 
 
-# This function glue the images to their graphic place
+
 def display_layout():
+    '''this function glue the images to their graphic place'''
     scale_col_general = int(WIDTH / (start.col - 1))
     scale_line_general = int(HEIGHT / (start.line - 1))
 
     black = pygame.image.load("image/carre_noir.png").convert_alpha()
     black = pygame.transform.scale(black, (scale_col_general, scale_line_general))
+    
     mac_gyver = pygame.image.load("image/MacGyver.png").convert_alpha()
     mac_gyver = pygame.transform.scale(
         mac_gyver, (scale_col_general, scale_line_general)

@@ -1,6 +1,7 @@
 # coding=utf-8
 
-class Item:  # parent class
+"""parent class"""
+class Item:  
     def __init__(self, name, position):
         self.name = name
         self.position = position

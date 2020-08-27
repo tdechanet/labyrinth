@@ -5,14 +5,16 @@ import pygame
 from pygame.locals import *
 
 
+"""this class ininitialize the movement and the inventory of the player"""
 class Character(
     Item
-):  # this class ininitialize the movement and the inventory of the player
+):  
 
     bag = []  # inventory of the player
     sedatif = False
 
-    def move(self, map, order):  # this method allow the player to move
+    def move(self, map, order): 
+        '''this method allow the player to move'''
         x = self.get_position()[0]
         y = self.get_position()[1]
 
@@ -33,9 +35,8 @@ class Character(
         self.inventory(map)
         return x, y
 
-    def incorrect_position(
-        self, map, order
-    ):  # this methord is used in move method to verify if the position is correct
+    def incorrect_position(self, map, order):  
+        '''this methord is used in move method to verify if the position is correct'''
         x = self.get_position()[0]
         y = self.get_position()[1]
         test_x = x
@@ -58,7 +59,8 @@ class Character(
             return True
         return False
 
-    def inventory(self, map):  # method to pickup item
+    def inventory(self, map):  
+        '''method to pickup item'''
         x = self.get_position()[0]
         y = self.get_position()[1]
         print(self.bag)
