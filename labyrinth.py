@@ -46,6 +46,8 @@ def start():
     # creation of the 2D array
     start.map_overview = [[0 for i in range(start.line)] for j in range(start.col)]
 
+    map_txt.close()
+
     start.fenetre = pygame.display.set_mode((WIDTH, HEIGHT))
 
     # assignation of the characters to their function in the map
