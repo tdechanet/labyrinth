@@ -82,47 +82,50 @@ def start():
 
 def display_layout():
     '''this function glue the images to their graphic place'''
-    scale_col_general = int(WIDTH / (start.col - 1))
-    scale_line_general = int(HEIGHT / (start.line - 1))
+    display_layout.scale_col_general = int(WIDTH / (start.col - 1))
+    display_layout.scale_line_general = int(HEIGHT / (start.line - 1))
 
-    black = pygame.image.load("image/carre_noir.png").convert_alpha()
-    black = pygame.transform.scale(black, (scale_col_general, scale_line_general))
+    display_layout.black = pygame.image.load("image/carre_noir.png").convert_alpha()
+    display_layout.black = pygame.transform.scale(display_layout.black, (display_layout.scale_col_general, display_layout.scale_line_general))
     
-    mac_gyver = pygame.image.load("image/MacGyver.png").convert_alpha()
-    mac_gyver = pygame.transform.scale(
-        mac_gyver, (scale_col_general, scale_line_general)
+    display_layout.mac_gyver = pygame.image.load("image/MacGyver.png").convert_alpha()
+    display_layout.mac_gyver = pygame.transform.scale(
+        display_layout.mac_gyver, (display_layout.scale_col_general, display_layout.scale_line_general)
     )
-    start.fenetre.blit(mac_gyver, start.position_macgyver)
+    start.fenetre.blit(display_layout.mac_gyver, start.position_macgyver)
 
     guard = pygame.image.load("image/Gardien.png").convert_alpha()
-    guard = pygame.transform.scale(guard, (scale_col_general, scale_line_general))
+    guard = pygame.transform.scale(guard, (display_layout.scale_col_general, display_layout.scale_line_general))
     start.fenetre.blit(guard, start.position_guard)
 
     position = set_item_position(start.map_overview, "aiguille")
     x, y = position
-    position = (x * scale_col_general, y * scale_line_general)
+    position = (x * display_layout.scale_col_general, y * display_layout.scale_line_general)
     aiguille = pygame.image.load("image/aiguille.png").convert_alpha()
-    aiguille = pygame.transform.scale(aiguille, (scale_col_general, scale_line_general))
+    aiguille = pygame.transform.scale(aiguille, (display_layout.scale_col_general, display_layout.scale_line_general))
     start.fenetre.blit(aiguille, (position))
 
     position = set_item_position(start.map_overview, "tube")
     x, y = position
-    position = (x * scale_col_general, y * scale_line_general)
+    position = (x * display_layout.scale_col_general, y * display_layout.scale_line_general)
     tube = pygame.image.load("image/tube_plastique.png").convert_alpha()
-    tube = pygame.transform.scale(tube, (scale_col_general, scale_line_general))
+    tube = pygame.transform.scale(tube, (display_layout.scale_col_general, display_layout.scale_line_general))
     start.fenetre.blit(tube, (position))
 
     position = set_item_position(start.map_overview, "éther")
     x, y = position
-    position = (x * scale_col_general, y * scale_line_general)
+    position = (x * display_layout.scale_col_general, y * display_layout.scale_line_general)
     ether = pygame.image.load("image/ether.png").convert_alpha()
-    ether = pygame.transform.scale(ether, (scale_col_general, scale_line_general))
+    ether = pygame.transform.scale(ether, (display_layout.scale_col_general, display_layout.scale_line_general))
     start.fenetre.blit(ether, (position))
 
-    x, y = start.macGyver.get_position()
+    display_layout.x, display_layout.y = start.macGyver.get_position()
 
     pygame.display.flip()
+    
 
+
+def key_order():
     # this loop make take the deplacement order and make macgyver move
     continuer = 1
     while continuer:
@@ -131,7 +134,7 @@ def display_layout():
                 continuer = 0
             if event.type == KEYDOWN:
                 start.fenetre.blit(
-                    black, (x * scale_col_general, y * scale_line_general)
+                    display_layout.black, (display_layout.x * display_layout.scale_col_general, display_layout.y * display_layout.scale_line_general)
                 )
 
                 if event.key == K_UP:
@@ -147,16 +150,16 @@ def display_layout():
                     order = "right"
                     pos = start.macGyver.move(start.map_overview, order)
                 if order:
-                    x = pos[0]
-                    y = pos[1]
+                    display_layout.x = pos[0]
+                    display_layout.y = pos[1]
 
                     start.fenetre.blit(
-                        mac_gyver, (x * scale_col_general, y * scale_line_general)
+                        display_layout.mac_gyver, (display_layout.x * display_layout.scale_col_general, display_layout.y * display_layout.scale_line_general)
                     )
                     pygame.display.flip()
 
                 # when you step on the guard, this condition decide if you win or lose
-                if start.x_y_guard == (x, y):
+                if start.x_y_guard == (display_layout.x, display_layout.y):
                     continuer = 0
                     if start.macGyver.inventory(start.map_overview) == True:
                         print("You win !")
