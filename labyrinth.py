@@ -13,8 +13,8 @@ HEIGHT = 660
 
 def set_item_position(map, item_string):
     '''this function give a random position to the game's items'''
-    x = random.randint(0, len(map) - 1)
-    y = random.randint(0, len(map[0]) - 1)
+    x = random.randint(0, len(map) - 2)
+    y = random.randint(0, len(map[0]) - 2)
     if map[x][y] == "path":
         map[x][y] = item_string
         return x, y
